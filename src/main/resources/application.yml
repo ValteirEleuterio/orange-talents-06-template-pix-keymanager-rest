@@ -1,3 +1,11 @@
 micronaut:
   application:
     name: kaymanagerRest
+
+
+grpc:
+  channels:
+    keymanager:
+      address: 'localhost:50051'
+      plaintext: true
+      max-retry-attempts: 10
