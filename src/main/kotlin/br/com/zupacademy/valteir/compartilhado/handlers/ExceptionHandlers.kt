@@ -28,6 +28,7 @@ class ExceptionHandlers {
     fun statusRuntimeExceptionHandler() : ExceptionHandler<StatusRuntimeException, HttpResponse<ErroResponse>> {
         return ExceptionHandler { _, e ->
             when(e.status.code) {
+                Status.NOT_FOUND.code -> HttpResponse.notFound(ErroResponse.comErro(e.status.description!!))
                 Status.ALREADY_EXISTS.code ->
                     HttpResponse.unprocessableEntity<Any>().body(ErroResponse.comErro(e.status.description!!))
                 Status.FAILED_PRECONDITION.code ->
