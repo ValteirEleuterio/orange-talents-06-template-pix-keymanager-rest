@@ -1,6 +1,7 @@
 package br.com.zupacademy.valteir.outros_sistemas
 
 import br.com.zupacademy.valteir.ConsultaPixServiceGrpc
+import br.com.zupacademy.valteir.ListaPixServiceGrpc
 import br.com.zupacademy.valteir.PixServiceGrpc
 import br.com.zupacademy.valteir.RemovePixServiceGrpc
 import io.grpc.ManagedChannel
@@ -21,4 +22,7 @@ class GrpcClientFactory(
 
     @Singleton
     fun consultaChave() = ConsultaPixServiceGrpc.newBlockingStub(channel)
+
+    @Singleton
+    fun listaChave() = ListaPixServiceGrpc.newBlockingStub(channel)
 }

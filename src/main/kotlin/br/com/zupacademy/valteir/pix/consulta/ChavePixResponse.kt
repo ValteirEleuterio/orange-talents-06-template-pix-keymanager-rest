@@ -1,33 +1,24 @@
 package br.com.zupacademy.valteir.pix.consulta
 
+import br.com.zupacademy.valteir.ListaChavesPixResponse
 import br.com.zupacademy.valteir.TipoChave
 import br.com.zupacademy.valteir.TipoConta
 import com.fasterxml.jackson.annotation.JsonFormat
 import io.micronaut.core.annotation.Introspected
+import java.time.Instant
 import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 @Introspected
-data class ChavePixResponse(
-    val idTitular: String,
-    val pixId: String,
-    val chave: ChavePix,
-)
+class ChavePixResponse(chave: ListaChavesPixResponse.ChavePix) {
 
-@Introspected
-data class ChavePix(
-    val tipo: TipoChave,
-    val chave: String,
-    val conta: Conta,
+    val pixId: String = chave.pixId
+    val idTitular: String = chave.idTitular
+    val chave: String = chave.chave
+    val tipoChave: TipoChave = chave.tipo
+    val tipoConta: TipoConta = chave.tipoConta
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    val criadaEm: LocalDateTime
-)
-
-@Introspected
-data class Conta(
-   val tipoConta: TipoConta,
-   val instituicao: String,
-   val nomeTitular: String,
-   val cpfTitular: String,
-   val agencia: String,
-   val numeroDaConta: String,
-)
+    val criadaEm: LocalDateTime = chave.criadaEm.let {
+        LocalDateTime.ofInstant(Instant.ofEpochSecond(it.seconds, it.nanos.toLong()), ZoneOffset.UTC)
+    }
+}

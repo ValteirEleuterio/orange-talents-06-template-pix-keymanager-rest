@@ -7,7 +7,7 @@ import java.time.ZoneOffset
 
 class ChavePixResponseConverter {
 
-    fun convert(consultaChavePixResponse: ConsultaChavePixResponse): ChavePixResponse {
+    fun convert(consultaChavePixResponse: ConsultaChavePixResponse): DetalheChavePixResponse {
         return with(consultaChavePixResponse) {
             val dadosConta = Conta(
                 chave.conta.tipo,
@@ -30,7 +30,7 @@ class ChavePixResponseConverter {
                 criadaEm
             )
 
-            ChavePixResponse(
+            DetalheChavePixResponse(
                 clientId,
                 pixId,
                 dadosChave

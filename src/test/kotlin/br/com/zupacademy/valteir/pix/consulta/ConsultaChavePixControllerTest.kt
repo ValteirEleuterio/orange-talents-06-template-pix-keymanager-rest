@@ -66,7 +66,7 @@ internal class ConsultaChavePixControllerTest {
         //validacao
         assertEquals(HttpStatus.OK, response.status)
         assertNotNull(response.body())
-        with(response.body() as ChavePixResponse) {
+        with(response.body() as DetalheChavePixResponse) {
             assertEquals(idTitular, this.idTitular)
             assertEquals(pixId, this.pixId)
         }
