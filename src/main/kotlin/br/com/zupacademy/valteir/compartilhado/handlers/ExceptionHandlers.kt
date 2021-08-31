@@ -38,7 +38,7 @@ class ExceptionHandlers {
 
                     val details = statusProto.detailsList[0].unpack(BadRequest::class.java)
                     val erros = details.fieldViolationsList.map {
-                        "${it.field}  ${it.description}"
+                        "${it.field} ${it.description}"
                     }
 
                     HttpResponse.badRequest(ErroResponse.comErros(erros))
